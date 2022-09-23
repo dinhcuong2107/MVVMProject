@@ -9,36 +9,49 @@ import com.example.mvvmproject.BR;
 import com.example.mvvmproject.model.Users;
 
 public class LoginVM extends BaseObservable {
-    public String phonenumber;
-    public String password;
-    public ObservableField<String> mess_login = new ObservableField<>();
 
+    public Users users;
+    @Bindable
+    public String mess_login =null;
+
+    public String getMess_login() {
+        return mess_login;
+    }
+
+    public void setMess_login(String mess_login) {
+        this.mess_login = mess_login;
+        notifyPropertyChanged(BR.mess_login);
+    }
 
     @Bindable
     public String getPhonenumber() {
-        return phonenumber;
+        return users.phonenumber;
     }
 
     public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+        users.setPhonenumber(phonenumber);
         notifyPropertyChanged(BR.phonenumber);
     }
     @Bindable
     public String getPassword() {
-        return password;
+        return users.password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        users.setPassword(password);
         notifyPropertyChanged(BR.password);
+    }
+
+    public LoginVM(){
+        users = new Users("","","","","","","","","","");
     }
 
     public void onClickLogin(){
         Users users = new Users("","","",getPhonenumber(),"",getPassword(),"","","","");
         if (users.isPhone() && users.isPassword()){
-            mess_login.set("acn");
+            setMess_login("acn");
         } else {
-            mess_login.set("Insert phonenumber or password");
+            setMess_login("Insert phonenumber or password");
         }
     }
 }

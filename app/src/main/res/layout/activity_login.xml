@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".LoginActivity">
+    xmlns:bind="http://schemas.android.com/tools">
     <data>
         <variable
             name="login"
@@ -54,7 +53,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:text="@{login.mess_login}"
+            android:text="quên mật khẩu"
             android:textColor="#FF0000"/>
 
         <Button
@@ -64,6 +63,7 @@
             android:text="Đăng nhập"
             android:textSize="21dp"
             android:onClick="@{()->login.onClickLogin()}"
+            bind:mess_login="@{login.mess_login}"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"

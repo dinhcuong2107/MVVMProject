@@ -1,12 +1,14 @@
 package com.example.mvvmproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.Observable;
 
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.mvvmproject.databinding.ActivityLoginBinding;
@@ -21,8 +23,13 @@ public class LoginActivity extends AppCompatActivity {
         networkBroadcast = new NetworkBroadcast();
 
         ActivityLoginBinding activityLoginBinding = DataBindingUtil.setContentView(this,R.layout.activity_login);
-        LoginVM loginVM = new LoginVM();
-        activityLoginBinding.setLogin(loginVM);
+        activityLoginBinding.setLogin(new LoginVM());
+        activityLoginBinding.executePendingBindings();
+    }
+
+    @BindingAdapter({"mess_login"})
+    public static void show_mess_login(View view, String mess){
+        if (mess != null){Toast.makeText(view.getContext(),""+mess,Toast.LENGTH_SHORT).show();}
     }
 
     @Override
