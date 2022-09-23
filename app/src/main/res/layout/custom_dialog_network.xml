@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:src="@drawable/errornetwork"
+        android:layout_marginTop="10dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Không có kết nối !!!"
+        android:textColor="#03A9F4"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+    <Button
+        android:id="@+id/btn_tryagain"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="Thử lại"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_btn_2"
+        android:textAllCaps="false"
+        android:textSize="21dp"
+        android:textStyle="bold"/>
+</LinearLayout>
