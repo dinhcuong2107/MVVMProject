@@ -1,57 +1,80 @@
 package com.example.mvvmproject.viewmodel;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.ObservableField;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.mvvmproject.BR;
 import com.example.mvvmproject.model.Users;
 
+import java.io.Closeable;
+import java.util.Observable;
+import java.util.logging.Handler;
+
 public class LoginVM extends BaseObservable {
+    private String phonenumber;
+    private  String password;
+    private MutableLiveData<Integer> busy;
+    public final MutableLiveData<String> mess_login = new MutableLiveData<>();
 
-    public Users users;
-    @Bindable
-    public String mess_login =null;
-
-    public String getMess_login() {
-        return mess_login;
+    public MutableLiveData<Integer> getBusy(){
+        if (busy== null){
+            busy = new MutableLiveData<>();
+            busy.setValue(8);
+        }return busy;
     }
 
-    public void setMess_login(String mess_login) {
-        this.mess_login = mess_login;
-        notifyPropertyChanged(BR.mess_login);
+    public LoginVM() {
     }
 
+    private MutableLiveData<Users> usersMutableLiveData;
+
+    LiveData<Users> getUsers(){
+        if (usersMutableLiveData==null){
+            usersMutableLiveData = new MutableLiveData<>();
+        }
+        return usersMutableLiveData;
+    }
     @Bindable
     public String getPhonenumber() {
-        return users.phonenumber;
+        return this.phonenumber;
     }
 
     public void setPhonenumber(String phonenumber) {
-        users.setPhonenumber(phonenumber);
-        notifyPropertyChanged(BR.phonenumber);
+        this.phonenumber = phonenumber;
     }
     @Bindable
     public String getPassword() {
-        return users.password;
+        return this.password;
     }
 
     public void setPassword(String password) {
-        users.setPassword(password);
-        notifyPropertyChanged(BR.password);
+        this.password = password;
     }
 
-    public LoginVM(){
-        users = new Users("","","","","","","","","","");
+    public void onClickSigup(){
+        mess_login.setValue("register");
+    }
+    public void onClickForget(){
+        mess_login.setValue("forget");
     }
 
     public void onClickLogin(){
         Users users = new Users("","","",getPhonenumber(),"",getPassword(),"","","","");
         if (users.isPhone() && users.isPassword()){
-            setMess_login("acn");
+            if (users.phonenumber.equals("12345678"))
+            {
+                mess_login.setValue("successful");
+            }else {
+                mess_login.setValue("error");
+            }
+
         } else {
-            setMess_login("Insert phonenumber or password");
+            mess_login.setValue("Insert phonenumber or password");
         }
     }
 }

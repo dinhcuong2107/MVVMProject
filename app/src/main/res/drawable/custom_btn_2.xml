@@ -3,13 +3,13 @@
     android:shape="rectangle">
     <!-- Set màu nền-->
     <solid
-        android:color="#F8754B" >
+        android:color="#FF7043" >
     </solid>
 
     <!-- đặt thuộc tính màu và độ rộng của đường viền -->
     <stroke
         android:width="3dp"
-        android:color="#FF5722" >
+        android:color="#E64A19" >
     </stroke>
 
     <!-- các thuộc tính căn chỉnh-->
